@@ -8,7 +8,7 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
     required this.salarioOuDiaria,
   });
 
-  int qtaSacosDeCimento = 10;
+  int qtaSacosDeCimento = 50;
   int qtaDeTijolos = 200;
   int qtaDeMassa = 0;
   int qtaDeConcreto = 0;
@@ -24,25 +24,23 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
   double horarioDeSaida;
   @override
   double salarioOuDiaria;
-  // late int c;
-  // late int k;
+
+  late int c;
   void prepararMassa() {
     if (fome == false &&
         sede == false &&
         cansado == false &&
         qtaSacosDeCimento >= 10) {
       print("Preparando massa..");
-      qtaDeMassa++;
+      qtaDeMassa + 2;
       qtaSacosDeCimento - 10;
-      sede = true;
-      cansado = true;
-      fome = true;
-      // c++;
-      // if (c > 5) {
-      //   sede = true;
-      //   cansado = true;
-      //   fome = true;
-      // }
+
+      c++;
+      if (c > 5) {
+        sede = true;
+        cansado = true;
+        fome = true;
+      }
     } else if (fome == true) {
       print("Voçe esta com fome.");
     } else if (sede == true) {
@@ -62,15 +60,13 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
       print("Preparando concreto..");
       qtaDeConcreto++;
       qtaSacosDeCimento - 10;
-      sede = true;
-      cansado = true;
-      fome = true;
-      // k++;
-      // if (k > 2) {
-      //   sede = true;
-      //   cansado = true;
-      //   fome = true;
-      // }
+
+      c++;
+      if (c > 2) {
+        sede = true;
+        cansado = true;
+        fome = true;
+      }
     } else if (fome == true) {
       print("Voçe esta com fome.");
     } else if (sede == true) {
@@ -91,9 +87,12 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
       print("Assentando tijolos..");
       qtaDeTijolos - 10;
       qtaDeConcreto - 2;
-      sede = true;
-      cansado = true;
-      fome = true;
+      c++;
+      if (c > 2) {
+        sede = true;
+        cansado = true;
+        fome = true;
+      }
     } else if (fome == true) {
       print("Voçe esta com fome.");
     } else if (sede == true) {
@@ -116,9 +115,12 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
       print("Assentando tijolos..");
       qtaDeTijolos - 40;
       qtaDeMassa - 4;
-      sede = true;
-      cansado = true;
-      fome = true;
+      c++;
+      if (c > 2) {
+        sede = true;
+        cansado = true;
+        fome = true;
+      }
     } else if (fome == true) {
       print("Voçe esta com fome.");
     } else if (sede == true) {
@@ -137,6 +139,9 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
     if (sede == true) {
       print("Bebendo cafezinho..");
       sede = false;
+      if (sede == false && cansado == false && fome == false) {
+        c = 0;
+      }
     } else {
       print("Não estou com sede, mas mereço um cafezinho.");
     }
@@ -147,6 +152,9 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
     if (sede == true) {
       print("Bebendo agua..");
       sede = false;
+      if (sede == false && cansado == false && fome == false) {
+        c = 0;
+      }
     } else {
       print('Voçe não esta com sede.');
     }
@@ -157,6 +165,9 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
     if (fome == true) {
       print("Voçe esta comendo.");
       fome = false;
+      if (sede == false && cansado == false && fome == false) {
+        c = 0;
+      }
     } else {
       print("Voçe não com fome.");
     }
@@ -167,6 +178,9 @@ class PedreiroModel implements TrabalhoInterface, PessoasInterface {
     if (cansado == true) {
       print("Voçe esta descansando.");
       cansado = false;
+      if (sede == false && cansado == false && fome == false) {
+        c = 0;
+      }
     } else {
       print("Voçe não esta cansado.");
     }
